@@ -19,13 +19,16 @@ sub parse {
     while ($line = <$fh>) {
         my $element = {};
         my @data = split(/\t/, $line);
-        for (my $i = 0; $i < $#data; $i++) {
-            my @el = split(/:/, $data[$i]);
-            $element->{$el[0]} = $el[1];
-        }
+
+        foreach my $data (@data) {
+            $data =~ /^(.+?):(.+)$/;
+            my $key = $1;
+            my $val = $2 || "-";
+            $element->{$key} = $val;
+        }       
         push @array, Log->new(%$element);
     }    
-    return @array;
+    return \@array;
 }
 
 1;
