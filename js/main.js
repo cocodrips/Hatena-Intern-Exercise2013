@@ -5,24 +5,22 @@ function parseLTSVLog(logStr){
         return result;
     }
 
-    if(logStr.match(/\n$/)){
-         logStr = logStr.replace(/\n$/, "");
-    }
+    logStr = logStr.replace(/\n$/, "");
     var logs = logStr.split("\n");
 
     logs.forEach(function(log){
         var elements = log.split("\t");
-        var logObj = new Object;
+        var logObj = {};
         elements.forEach(function(element){
             var e = element.split(":");
-            if(!e[1].match(/[^0-9]/g)){
+            if(e[1].match(/[0-9]+/)){
                 e[1] = parseInt(e[1]);
             }
             logObj[e[0]] = e[1];
         });
         result.push(logObj)
     });
-    return JSON.parse(JSON.stringify(result))
+    return result;
 
 }
 // 課題 JS-2: 関数 `createLogTable` を記述してください

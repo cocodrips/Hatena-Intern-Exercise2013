@@ -8,9 +8,13 @@ sub new {
 };
 
 sub group_by_user {
+    my $self = shift;
+    my $logs = $self->{logs};
 }
 
 sub count_error {
+    my $self = shift;
+    print $self->{logs};
 }
 
 1;
