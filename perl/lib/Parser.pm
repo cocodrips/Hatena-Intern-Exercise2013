@@ -23,7 +23,7 @@ sub parse {
         foreach my $data (@data) {
             $data =~ /^(.+?):(.+)$/;
             my $key = $1;
-            my $val = $2 || "-";
+            my $val = $2 || '-';
             if ($val ne '-') {
                 $element->{$key} = $val;
             }

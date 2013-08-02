@@ -10,23 +10,16 @@ sub new {
 sub group_by_user {
     my $self = shift;
     my $result = {};
-    my $log_array = $self->{logs};
-    foreach my $log (@$log_array){
-        my $user;
-        if(exists $log->{user}){
-            $user = $log->{user};
-        }else{
-            $user = 'guest';
-        }
-        push @{$result->{$user}}, $log;
+    foreach(@{$self->{logs}}){
+        my $user = $_->{user} || 'guest';
+        push @{$result->{$user}}, $_;
     }
     return $result;
 }
 
 sub count_error {
     my $self = shift;
-    my $log_array = $self->{logs};
-    return scalar grep {$_->{status} >= 500 && $_->{status} <= 599} @$log_array;
+    return scalar grep {$_->{status} >= 500 && $_->{status} <= 599} @{$self->{logs}};
 }
 
 1;
