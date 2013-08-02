@@ -24,7 +24,9 @@ sub parse {
             $data =~ /^(.+?):(.+)$/;
             my $key = $1;
             my $val = $2 || "-";
-            $element->{$key} = $val;
+            if ($val ne '-') {
+                $element->{$key} = $val;
+            }
         }       
         push @array, Log->new(%$element);
     }    

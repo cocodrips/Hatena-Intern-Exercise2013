@@ -1,7 +1,7 @@
 use strict;
 use warnings;
 
-use lib::Log;
+use Log;
 
 my $log = Log->new(
     host    => '127.0.0.1',

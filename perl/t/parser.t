@@ -4,7 +4,6 @@ use warnings;
 use Test::More;
 
 use_ok 'Parser';
-use Parser;
 
 my $parser = Parser->new( filename => 'log.ltsv' );
 isa_ok $parser, 'Parser';
